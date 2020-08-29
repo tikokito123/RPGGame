@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,6 +14,20 @@ public class Mover : MonoBehaviour
     }
     void Update()
     {
-        navMesh.destination = target.position;
+        if (Input.GetMouseButtonDown(0))
+        {
+            MoveToCursor();
+        }
+    }
+
+    private void MoveToCursor()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        bool hasHit = Physics.Raycast(ray,out hit);
+        if (hasHit)
+        {
+            navMesh.destination = hit.point;
+        }
     }
 }
