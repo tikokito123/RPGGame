@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 57b60a0feb4bbe747ab8bc7bb608365c, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a19243dd9d4c01b4c98e4b05218c7091, type: 2}
 --- !u!1001 &148669296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1378,30 +1378,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 460534, guid: d556d30cab334dd449000218c87322ef, type: 3}
   m_PrefabInstance: {fileID: 1988622714}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2044059151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6676297870829203377, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
-  m_PrefabInstance: {fileID: 7764600231489074045}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &2044059152
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044059151}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9af9ee4d2def9894f82e4549bb04f90c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &2044059155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4825120160421238640, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
@@ -1503,18 +1479,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2044059157, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
-      propertyPath: m_Speed
-      value: 5.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044059157, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044059157, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
-      propertyPath: m_Acceleration
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 4825120160421238640, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
