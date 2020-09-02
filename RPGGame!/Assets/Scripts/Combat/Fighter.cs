@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Movement;
+using RPG.Core;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour, IAction
     {
         Transform target;
         [SerializeField] float weaponRange = 2f;
@@ -19,8 +20,14 @@ namespace RPG.Combat
             }
             else
             {
-                GetComponent<Mover>().Stop();
+                GetComponent<Mover>().Cancel();
+                AttackBehaviour();
             }
+        }
+
+        private void AttackBehaviour()
+        {
+            GetComponent<Animator>().SetTrigger("Attack");
         }
 
         private bool GetIsInDistance()
@@ -31,10 +38,16 @@ namespace RPG.Combat
         public void Attack(CombatTarget CombatTarget)
         {
             target = CombatTarget.transform;
+            GetComponent<ActionShcelduler>().StartAction(this);
         } 
         public void Cancel()
         {
             target = null;
+            GetComponent<Animator>().SetTrigger("Attack");
+        }
+        //animation event
+        void Hit()
+        {
         }
     }
 }
