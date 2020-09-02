@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPG.Combat;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,11 +19,20 @@ namespace RPG.Movement
         {
             UpdateAnimator();
         }
+        public void StartMoveAction(Vector3 destination)
+        {
+            MoveTo(destination);
+            GetComponent<Fighter>().Cancel();
+        }
         public void MoveTo(Vector3 destination)
         {
             navMesh.destination = destination;
+            navMesh.isStopped = false;
         }
-
+        public void Stop()
+        {
+            navMesh.isStopped = true;
+        }
         private void UpdateAnimator()
         {
             Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
