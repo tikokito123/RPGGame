@@ -10,9 +10,13 @@ namespace RPG.Combat
     {
         Transform target;
         [SerializeField] float weaponRange = 2f;
+        [SerializeField] float timeBetweenAttacks = 1f;
+        [SerializeField] float timeSinceLastAttack = 0f;
+        [SerializeField] float damage = 5f;
         
         private void Update()
         {
+            timeSinceLastAttack += Time.deltaTime;
             if (target == null) return;
             if (!GetIsInDistance())
             {
@@ -27,7 +31,11 @@ namespace RPG.Combat
 
         private void AttackBehaviour()
         {
-            GetComponent<Animator>().SetTrigger("Attack");
+            if (timeSinceLastAttack >= timeBetweenAttacks)
+            {
+                GetComponent<Animator>().SetTrigger("Attack");
+                timeSinceLastAttack = 0;
+            }
         }
 
         private bool GetIsInDistance()
@@ -48,6 +56,7 @@ namespace RPG.Combat
         //animation event
         void Hit()
         {
+            target.GetComponent<Health>().HealthDamage(damage);
         }
     }
 }
