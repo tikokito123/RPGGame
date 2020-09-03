@@ -13,7 +13,6 @@ namespace RPG.Combat
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] float timeSinceLastAttack = 0f;
         [SerializeField] float damage = 5f;
-        
         private void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
@@ -28,7 +27,6 @@ namespace RPG.Combat
                 AttackBehaviour();
             }
         }
-
         private void AttackBehaviour()
         {
             if (timeSinceLastAttack >= timeBetweenAttacks)
@@ -37,12 +35,23 @@ namespace RPG.Combat
                 timeSinceLastAttack = 0;
             }
         }
+        //animation event
+        void Hit()
+        {
+            try
+            {
+                target.GetComponent<Health>().HealthDamage(damage);
 
+            }
+            catch
+            {
+                return;
+            }
+        }
         private bool GetIsInDistance()
         {
             return Vector3.Distance(transform.position, target.position) < weaponRange;
         }
-
         public void Attack(CombatTarget CombatTarget)
         {
             target = CombatTarget.transform;
@@ -52,11 +61,6 @@ namespace RPG.Combat
         {
             target = null;
             GetComponent<Animator>().SetTrigger("Attack");
-        }
-        //animation event
-        void Hit()
-        {
-            target.GetComponent<Health>().HealthDamage(damage);
         }
     }
 }

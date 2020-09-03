@@ -7,11 +7,14 @@ namespace RPG.Combat
     public class Health : MonoBehaviour
     {
         [SerializeField] float health = 15;
-
         public void HealthDamage(float damage)
         {
             health = Mathf.Max(health - damage, 0);
             print(health);
+            if (health == 0)
+            {
+                GetComponent<Animator>().SetTrigger("Die");
+            }
         }
     }
 }

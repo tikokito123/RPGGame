@@ -15,7 +15,6 @@ namespace RPG.Control
             if (InteractWithMovement()) return;
             print("nothing to do.");
         }
-
         private bool InteractWithCombat()
         {
             var hits = Physics.RaycastAll(GetMouseRay());
@@ -34,7 +33,6 @@ namespace RPG.Control
             }
             return false;
         }
-
         private bool InteractWithMovement()
         {
             RaycastHit hit;
@@ -49,7 +47,6 @@ namespace RPG.Control
             }
             return false;
         }
-
         private static Ray GetMouseRay()
         {
             return Camera.main.ScreenPointToRay(Input.mousePosition);

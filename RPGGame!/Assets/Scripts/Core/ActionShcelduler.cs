@@ -16,7 +16,6 @@ namespace RPG.Core
                 currentAction.Cancel();
             }
             currentAction = action;
-
         }
     }
 }
