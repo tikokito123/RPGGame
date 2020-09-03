@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
+using UnityEngine.UIElements;
 
 namespace RPG.Combat
 {
@@ -31,15 +32,30 @@ namespace RPG.Combat
         }
         private void AttackBehaviour()
         {
+            transform.LookAt(target.transform);
             if (timeSinceLastAttack >= timeBetweenAttacks)
             {
-                GetComponent<Animator>().SetTrigger("Attack");
+                TriggerAttackAnimation();
                 timeSinceLastAttack = 0;
             }
+        }
+
+        private void TriggerAttackAnimation()
+        {
+            GetComponent<Animator>().ResetTrigger("StopAttack");
+            GetComponent<Animator>().SetTrigger("Attack");
+        }
+
+        public bool CanAttack(CombatTarget combatTarget)
+        {
+            if (combatTarget == null) { return false; }
+            Health targetToTest = combatTarget.GetComponent<Health>();
+            return targetToTest != null && !targetToTest.IsDead();
         }
         //animation event
         void Hit()
         {
+            if (target == null) return;
             target.HealthDamage(damage);
         }
         private bool GetIsInDistance()
@@ -50,12 +66,17 @@ namespace RPG.Combat
         {
             target = CombatTarget.GetComponent<Health>();
             GetComponent<ActionShcelduler>().StartAction(this);
-        } 
+        }
         public void Cancel()
         {
+            StopAttackAnimation();
             target = null;
-            GetComponent<Animator>().SetTrigger("StopAttack");
 
+        }
+        private void StopAttackAnimation()
+        {
+            GetComponent<Animator>().ResetTrigger("Attack");
+            GetComponent<Animator>().SetTrigger("StopAttack");
         }
     }
 }

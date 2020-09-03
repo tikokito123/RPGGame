@@ -13,18 +13,15 @@ namespace RPG.Control
         {
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
-            print("nothing to do.");
         }
         private bool InteractWithCombat()
         {
             var hits = Physics.RaycastAll(GetMouseRay());
             foreach (RaycastHit hit in hits)
             {
+                 
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (target == null)
-                {
-                    continue;
-                }
+                if (!GetComponent<Fighter>().CanAttack(target)) continue;
                 if (Input.GetMouseButtonDown(0))
                 {
                     GetComponent<Fighter>().Attack(target);
