@@ -5,20 +5,26 @@ using System.Runtime.InteropServices.ComTypes;
 using System;
 using RPG.Combat;
 using RPG.Core;
+using RPG.Movement;
 
 namespace RPG.Control
 {
     public class AIController : MonoBehaviour
     {
         [SerializeField] float chaseDistance = 5f;
+       
         Fighter fighter;
         Health health;
         GameObject player;
+        Mover mover;
+        Vector3 guardLocation;
         private void Start()
         {
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
+            mover = GetComponent<Mover>();
             player = GameObject.FindWithTag("Player");
+            guardLocation = transform.position;
         }
         private void Update()
         {
@@ -29,7 +35,7 @@ namespace RPG.Control
             }
             else
             {
-                fighter.Cancel();
+                mover.StartMoveAction(guardLocation);
             }
         }
         private bool InAttackRangeOfPlayer()
