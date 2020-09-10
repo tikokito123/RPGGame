@@ -16,6 +16,7 @@ namespace RPG.Control
         [SerializeField] float suspicionTime = 3f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
+        [SerializeField] float suspicionWaypoint = 1f;
        
         Fighter fighter;
         Health health;
@@ -23,6 +24,7 @@ namespace RPG.Control
         Mover mover;
         Vector3 guardLocation;
         float timeSinceLastSawPlayer = Mathf.Infinity;
+        float timeAtWaypoint = Mathf.Infinity;
         int currentWaypointIndex = 0;
         private void Start()
         {
@@ -34,7 +36,6 @@ namespace RPG.Control
         }
         private void Update()
         {
-            timeSinceLastSawPlayer += Time.deltaTime; 
             if (health.IsDead()) return;
             if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
             {
@@ -43,13 +44,20 @@ namespace RPG.Control
             }
             else if (timeSinceLastSawPlayer < suspicionTime)
             {
-                    //suspicion Time;
-                    SuspicionBehaviour();
+                //suspicion Time;
+                SuspicionBehaviour();
             }
             else
             {
                 PatrolBehaviour();
             }
+            UpdateTimers();
+        }
+
+        private void UpdateTimers()
+        {
+            timeSinceLastSawPlayer += Time.deltaTime;
+            timeAtWaypoint += Time.deltaTime;
         }
 
         private void PatrolBehaviour()
@@ -59,11 +67,15 @@ namespace RPG.Control
             {
                 if (AtWaypoint())
                 {
+                    timeAtWaypoint = 0;
                     CycleWaypoint();
                 }
                 nextPosition = GetCurrentWaypoint();
             }
-            mover.StartMoveAction(nextPosition);
+            if (timeAtWaypoint > suspicionWaypoint)
+            {
+                mover.StartMoveAction(nextPosition);
+            }
         }
         private void CycleWaypoint()
         {
@@ -77,7 +89,7 @@ namespace RPG.Control
         {
             float dist = Vector3.Distance(transform.position, GetCurrentWaypoint());
             return dist <= waypointTolerance;
-         
+            // waypointTolerance = 1f;
         }
 
         private void SuspicionBehaviour()
