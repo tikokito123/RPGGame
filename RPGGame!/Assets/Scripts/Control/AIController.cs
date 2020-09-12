@@ -17,6 +17,8 @@ namespace RPG.Control
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
         [SerializeField] float suspicionWaypoint = 1f;
+        [Range(0,1)]
+        [SerializeField] float PatrolSpeedFraction = 0.2f;
        
         Fighter fighter;
         Health health;
@@ -74,7 +76,7 @@ namespace RPG.Control
             }
             if (timeAtWaypoint > suspicionWaypoint)
             {
-                mover.StartMoveAction(nextPosition);
+                mover.StartMoveAction(nextPosition, PatrolSpeedFraction);
             }
         }
         private void CycleWaypoint()

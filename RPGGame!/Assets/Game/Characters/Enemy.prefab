@@ -13,7 +13,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &2317705349178553160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,6 +28,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseDistance: 5
   suspicionTime: 3
+  patrolPath: {fileID: 0}
+  waypointTolerance: 1
+  suspicionWaypoint: 1
 --- !u!114 &2739573981388255215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,11 +64,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2044059157, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
       propertyPath: m_Speed
-      value: 3.7
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1486977111135120170, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4533266023109063462, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
       propertyPath: health
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4825120160421238640, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
       propertyPath: m_LocalPosition.x
