@@ -195,11 +195,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7281329281052139782, guid: 96be04c336752874a88a08b04d4ac062, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 2963550735751418810}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96be04c336752874a88a08b04d4ac062, type: 3}
 --- !u!4 &2879393676755167271 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3699973804439690588, guid: 96be04c336752874a88a08b04d4ac062, type: 3}
+  m_PrefabInstance: {fileID: 1489948041252156795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2963550735751418810 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4435480931646580417, guid: 96be04c336752874a88a08b04d4ac062, type: 3}
   m_PrefabInstance: {fileID: 1489948041252156795}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7365168512057501631

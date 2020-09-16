@@ -31,6 +31,7 @@ MonoBehaviour:
   patrolPath: {fileID: 0}
   waypointTolerance: 1
   suspicionWaypoint: 1
+  PatrolSpeedFraction: 0.2
 --- !u!114 &2739573981388255215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +71,14 @@ PrefabInstance:
       propertyPath: timeBetweenAttacks
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1486977111135120170, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 386d1fcf9c4eb394e87b1e285735b00c, type: 2}
+    - target: {fileID: 1486977111135120170, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 4104998929437733005}
     - target: {fileID: 4533266023109063462, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
       propertyPath: health
       value: 40
@@ -193,3 +202,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+--- !u!4 &4104998929437733005 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 423694, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+  m_PrefabInstance: {fileID: 4104998929437345667}
+  m_PrefabAsset: {fileID: 0}
