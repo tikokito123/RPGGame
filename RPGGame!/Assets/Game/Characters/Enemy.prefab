@@ -79,6 +79,10 @@ PrefabInstance:
       propertyPath: handTransform
       value: 
       objectReference: {fileID: 4104998929437733005}
+    - target: {fileID: 1486977111135120170, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
+      propertyPath: deafultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 386d1fcf9c4eb394e87b1e285735b00c, type: 2}
     - target: {fileID: 4533266023109063462, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
       propertyPath: health
       value: 40
