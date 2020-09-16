@@ -11,7 +11,7 @@ namespace RPG.Combat
         {
             if (other.gameObject.tag == "Player")
             {
-                FindObjectOfType<Fighter>().EquipWeapon(weapon);
+                other.GetComponent<Fighter>().EquipWeapon(weapon);
                 Destroy(gameObject);
             }
         }
