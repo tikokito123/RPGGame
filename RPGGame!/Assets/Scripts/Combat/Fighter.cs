@@ -61,9 +61,16 @@ namespace RPG.Combat
         void Hit()
         {
             if (target == null) return;
-            target.HealthDamage(currentWeapon.GetWeaponDamage());
+            if (currentWeapon.HasProjectile())
+            {
+                currentWeapon.LunchProjectile(target, rightHandTransform, leftHandTransform);
+            }
+            else
+            {
+                target.HealthDamage(currentWeapon.GetWeaponDamage());
+            }
         }
-
+        
         void Shoot()
         {
             Hit();

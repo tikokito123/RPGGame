@@ -29,7 +29,7 @@ namespace RPG.Combat
         public void LunchProjectile(Health target, Transform rightHand, Transform leftHand)
         {
             Projectile projectileInstance = Instantiate(projectile,GetTransform(rightHand, leftHand).position, Quaternion.identity);
-            projectileInstance.SetTarget(target);
+            projectileInstance.SetTarget(target, damage);
         }
         public void Spawn(Transform rightHand,Transform leftHand, Animator animator)
         {
