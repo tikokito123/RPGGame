@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 3171893292971627197, guid: e549b7ea2d59765468758156124c3795, type: 3}
+      propertyPath: isHoming
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3469681465136127199, guid: e549b7ea2d59765468758156124c3795, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.r
       value: 0
