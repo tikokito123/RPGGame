@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Saving;
 using System.Runtime.InteropServices;
+using RPG.Stats;
 
 namespace RPG.Core
 {
     public class Health : MonoBehaviour, ISaveable
     {
+
         [SerializeField] float health = 15;
         bool isDead = false;
+        private void Start()
+        {
+            health = GetComponent<BaseStats>().GetHealth();
+        }
         public bool IsDead()
         {
             return isDead;
