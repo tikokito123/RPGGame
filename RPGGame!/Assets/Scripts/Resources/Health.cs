@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Saving;
 using System.Runtime.InteropServices;
+using RPG.Core;
 using RPG.Stats;
 
-namespace RPG.Core
+namespace RPG.Resources
 {
     public class Health : MonoBehaviour, ISaveable
     {
@@ -25,7 +26,10 @@ namespace RPG.Core
             health = Mathf.Max(health - damage, 0);
             Die();
         }
-
+        public float GetPercentage()
+        {
+            return 100 * (health / GetComponent<BaseStats>().GetHealth());
+        }
         private void Die()
         {
             if (health == 0)

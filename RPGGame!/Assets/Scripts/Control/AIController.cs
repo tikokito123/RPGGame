@@ -7,6 +7,7 @@ using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
 using System.IO;
+using RPG.Resources;
 
 namespace RPG.Control
 {
