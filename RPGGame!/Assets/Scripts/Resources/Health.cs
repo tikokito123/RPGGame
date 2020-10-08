@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using RPG.Saving;
-using System.Runtime.InteropServices;
 using RPG.Core;
 using RPG.Stats;
-using System;
 
 namespace RPG.Resources
 {

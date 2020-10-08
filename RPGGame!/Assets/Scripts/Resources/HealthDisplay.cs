@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace RPG.Resources
@@ -14,6 +12,7 @@ namespace RPG.Resources
         }
         private void Update()
         {
+
             GetComponent<Text>().text = string.Format("{0:0}%", health.GetPercentage().ToString());
         }
     }

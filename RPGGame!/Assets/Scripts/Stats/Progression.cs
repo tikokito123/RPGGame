@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using UnityEngine;
+﻿using UnityEngine;
 namespace RPG.Stats
 {
     [CreateAssetMenu(fileName = "Progression", menuName = "Stats/New Progression", order = 0)]
