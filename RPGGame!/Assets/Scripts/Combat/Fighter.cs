@@ -66,11 +66,11 @@ namespace RPG.Combat
             if (target == null) return;
             if (currentWeapon.HasProjectile())
             {
-                currentWeapon.LunchProjectile(target, rightHandTransform, leftHandTransform);
+                currentWeapon.LunchProjectile(target, rightHandTransform, leftHandTransform, gameObject);
             }
             else
             {
-                target.HealthDamage(currentWeapon.GetWeaponDamage());
+                target.HealthDamage(gameObject,currentWeapon.GetWeaponDamage());
             }
         }
         

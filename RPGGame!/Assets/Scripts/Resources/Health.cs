@@ -5,6 +5,7 @@ using RPG.Saving;
 using System.Runtime.InteropServices;
 using RPG.Core;
 using RPG.Stats;
+using System;
 
 namespace RPG.Resources
 {
@@ -13,22 +14,25 @@ namespace RPG.Resources
 
         [SerializeField] float health = 15;
         bool isDead = false;
-        private void Start()
+        private void Awake()
         {
-            health = GetComponent<BaseStats>().GetHealth();
+            health = GetComponent<BaseStats>().GetStat(Stat.Health);
         }
         public bool IsDead()
         {
             return isDead;
         }
-        public void HealthDamage(float damage)
+        public void HealthDamage(GameObject instigator, float damage)
         {
             health = Mathf.Max(health - damage, 0);
             Die();
+            AwardExperience(instigator);
         }
+
+
         public float GetPercentage()
         {
-            return 100 * (health / GetComponent<BaseStats>().GetHealth());
+            return 100 * (health / GetComponent<BaseStats>().GetStat(Stat.Health));
         }
         private void Die()
         {
@@ -40,6 +44,12 @@ namespace RPG.Resources
                 GetComponent<Animator>().SetTrigger("Die");
                 GetComponent<ActionShcelduler>().CancelCurrentAction();          
             }
+        }
+        private void AwardExperience(GameObject instigator)
+        {
+            Experience xp = instigator.GetComponent<Experience>();
+            if (xp == null) return;
+            xp.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
         }
 
         public object CaptureState()
