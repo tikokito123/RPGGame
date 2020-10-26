@@ -19,7 +19,7 @@ namespace RPG.Combat
                 GetComponent<Text>().text = "N/A";
                 return;
             }
-            GetComponent<Text>().text = string.Format("{0:0}%", fighter.GetTarget().GetPercentage().ToString());
+            GetComponent<Text>().text = string.Format("{0:0}%", fighter.GetTarget().GetPercentage());
         }
     }
 }

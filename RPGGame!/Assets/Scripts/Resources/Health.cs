@@ -7,9 +7,9 @@ namespace RPG.Resources
 {
     public class Health : MonoBehaviour, ISaveable
     {
-
         [SerializeField] float health = 15;
         bool isDead = false;
+        
         private void Awake()
         {
             health = GetComponent<BaseStats>().GetStat(Stat.Health);
