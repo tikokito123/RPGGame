@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8434421224612736750}
   - component: {fileID: 7854802158544256555}
   - component: {fileID: 4952717299307264387}
-  - component: {fileID: 4729210040077666368}
+  - component: {fileID: 4703351694969158431}
   m_Layer: 5
   m_Name: LevelValue
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Text: '1
 
 '
---- !u!114 &4729210040077666368
+--- !u!114 &4703351694969158431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 684250189860602595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 146cf83683687234fae14e4fbb37215b, type: 3}
+  m_Script: {fileID: 11500000, guid: c995225f820534a428c3644413f61a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &874551407731966463
