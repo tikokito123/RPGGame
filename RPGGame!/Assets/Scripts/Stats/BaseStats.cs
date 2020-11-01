@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Xml.Schema;
+using UnityEngine;
 
 namespace RPG.Stats
 {
@@ -8,18 +10,62 @@ namespace RPG.Stats
         [SerializeField] int startingLevel = 0;
         [SerializeField] CharacterClass characterClass;
         [SerializeField] Progression progression = null;
-        private void Update()
+        [SerializeField] GameObject levelUpPE = null;
+
+        public event Action onLevelUp;
+
+        int currentLevel = 0;
+
+        private void Start()
         {
-            if (gameObject.tag == "Player")
+            Experience experience = GetComponent<Experience>();
+            currentLevel = CauculateLevel();
+            if (experience != null)
             {
-                print(GetLevel());
+                experience.OnExperienceGained += UpdateLevel;
             }
         }
+        private void UpdateLevel()
+        {
+            int newLevel = CauculateLevel();
+            if (newLevel > currentLevel)
+            {
+                currentLevel = newLevel;
+                LevelUpEffect();
+                onLevelUp();
+            }
+        }
+        private void LevelUpEffect()
+        {
+            Instantiate(levelUpPE, transform);
+        }
+
         public float GetStat(Stat stat)
         {
-            return progression.GetStat(stat, characterClass, startingLevel);
+            return progression.GetStat(stat, characterClass, startingLevel) + GetAdditiveModifiers(stat);
         }
         public int GetLevel()
+        {
+            if (currentLevel < 1)
+            {
+                return currentLevel = CauculateLevel();
+            }
+            return currentLevel;
+        }
+        private float GetAdditiveModifiers(Stat stat)
+        {
+            float total = 0;
+            foreach (var provider in GetComponents<IModifierProvider>())
+            {
+                foreach (float modifier in provider.GetAdditiveModifier(stat))
+                {
+                    total += modifier;
+                }
+            }
+            return total;
+
+        }
+        public int CauculateLevel()
         {
             Experience experience = GetComponent<Experience>();
             if (experience == null) return startingLevel;

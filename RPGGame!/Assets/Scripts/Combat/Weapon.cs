@@ -28,10 +28,10 @@ namespace RPG.Combat
             return projectile != null;
         }
 
-        public void LunchProjectile(Health target, Transform rightHand, Transform leftHand,GameObject instigator)
+        public void LunchProjectile(Health target, Transform rightHand, Transform leftHand,GameObject instigator, float calculatedDamage)
         {
             Projectile projectileInstance = Instantiate(projectile,GetTransform(rightHand, leftHand).position, Quaternion.identity);
-            projectileInstance.SetTarget(target,instigator ,damage);
+            projectileInstance.SetTarget(target,instigator ,calculatedDamage);
         }
         public void Spawn(Transform rightHand,Transform leftHand, Animator animator)
         {

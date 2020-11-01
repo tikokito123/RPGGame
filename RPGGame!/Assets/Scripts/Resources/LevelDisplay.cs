@@ -13,6 +13,6 @@ public class LevelDisplay : MonoBehaviour
     }
     void Update()
     {
-        GetComponent<Text>().text = level.GetLevel().ToString();
+        GetComponent<Text>().text = level.CauculateLevel().ToString();
     }
 }

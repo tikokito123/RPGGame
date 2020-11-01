@@ -7,24 +7,37 @@ namespace RPG.Resources
 {
     public class Health : MonoBehaviour, ISaveable
     {
+        [SerializeField] float regenerationPercentage = 70;
         [SerializeField] float health = 15;
         bool isDead = false;
         
-        private void Awake()
+        private void Start()
         {
+            GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
             health = GetComponent<BaseStats>().GetStat(Stat.Health);
         }
+
         public bool IsDead()
         {
             return isDead;
         }
         public void HealthDamage(GameObject instigator, float damage)
         {
+            print(gameObject.name + "took damage: " + damage);
             health = Mathf.Max(health - damage, 0);
             Die();
             AwardExperience(instigator);
         }
 
+        public float GetHealth()
+        {
+            return health;
+        }
+
+        public float GetMaxHealth()
+        {
+            return GetComponent<BaseStats>().GetStat(Stat.Health);
+        }
 
         public float GetPercentage()
         {
@@ -41,6 +54,12 @@ namespace RPG.Resources
                 GetComponent<ActionShcelduler>().CancelCurrentAction();          
             }
         }
+        private void RegenerateHealth()
+        {
+            float regenerationHealth = GetComponent<BaseStats>().GetStat(Stat.Health) * (regenerationPercentage / 100);
+            health = Mathf.Max(health, regenerationHealth);
+        }
+        
         private void AwardExperience(GameObject instigator)
         {
             Experience xp = instigator.GetComponent<Experience>();

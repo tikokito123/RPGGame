@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: characterClass
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2257855898869755298, guid: 2aa8866760f81e74b97e1f8d81426808, type: 3}
+      propertyPath: regenerationPercentage
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2317705349178553160, guid: 2aa8866760f81e74b97e1f8d81426808, type: 3}
       propertyPath: chaseDistance
       value: 15
