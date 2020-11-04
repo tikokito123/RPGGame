@@ -5,6 +5,8 @@ using RPG.Saving;
 using RPG.Resources;
 using RPG.Stats;
 using System.Collections.Generic;
+using GameDevTV.Utils;
+using System.Dynamic;
 
 namespace RPG.Combat
 {
@@ -17,13 +19,14 @@ namespace RPG.Combat
         [SerializeField] string deafultWeaponName = "Unarmed";
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
-        Weapon currentWeapon = null;
+        LazyValue<Weapon> currentWeapon;
+        private void Awake()
+        {
+            currentWeapon = new LazyValue<Weapon>(SetDeafultWeapon);   
+        }
         void Start()
         {
-            if (currentWeapon == null)
-            {
-               EquipWeapon(deafultWeapon);
-            }
+            currentWeapon.ForceInit();
         }
         private void Update()
         {
@@ -39,6 +42,11 @@ namespace RPG.Combat
                 GetComponent<Mover>().Cancel();
                 AttackBehaviour();
             }
+        }
+        private Weapon SetDeafultWeapon()
+        {
+            AttachWeapon(deafultWeapon);
+            return deafultWeapon;
         }
         void AttackBehaviour()
         {
@@ -67,23 +75,22 @@ namespace RPG.Combat
         {
             if (target == null) return;
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
-            if (currentWeapon.HasProjectile())
+            if (currentWeapon.value.HasProjectile())
             {
-                currentWeapon.LunchProjectile(target, rightHandTransform, leftHandTransform, gameObject,damage);
+                currentWeapon.value.LunchProjectile(target, rightHandTransform, leftHandTransform, gameObject,damage);
             }
             else
             {
                 target.HealthDamage(gameObject, damage);
             }
         }
-        
         void Shoot()
         {
             Hit();
         }
         private bool GetIsInDistance()
         {
-            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetWeaponRange();
+            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.value.GetWeaponRange();
         }
         public void Attack(GameObject CombatTarget)
         {
@@ -103,17 +110,23 @@ namespace RPG.Combat
         }
         public void EquipWeapon(Weapon weapon)
         {
-            currentWeapon = weapon;
+            currentWeapon.value = weapon;
+            AttachWeapon(weapon);
+        }
+
+        private void AttachWeapon(Weapon weapon)
+        {
             Animator animator = GetComponent<Animator>();
             weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
+
         public Health GetTarget()
         {
             return target;
         }
         public object CaptureState()
         {
-            return currentWeapon.name;
+            return currentWeapon.value.name;
         }
 
         public void RestoreState(object state)
@@ -123,11 +136,19 @@ namespace RPG.Combat
             EquipWeapon(weapon);
         }
 
-        public IEnumerable<float> GetAdditiveModifier(Stat stat)
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
         {
             if (stat == Stat.Damage)
             {
-                yield return currentWeapon.GetWeaponDamage();
+                yield return currentWeapon.value.GetWeaponDamage();
+            }
+        }
+
+        public IEnumerable<float> GetPersentageModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return currentWeapon.value.GetPrecentageBonus();
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using RPG.Stats;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,6 @@ public class LevelDisplay : MonoBehaviour
     }
     void Update()
     {
-        GetComponent<Text>().text = level.CauculateLevel().ToString();
+        GetComponent<Text>().text = String.Format("{0:0}", level.GetLevel());
     }
 }

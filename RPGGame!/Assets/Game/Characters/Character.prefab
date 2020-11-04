@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c84b767dffff94197a0fab07a793de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  regenerationPercentage: 70
 --- !u!114 &9092450513748015359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,5 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingLevel: 1
-  characterClass: 1
+  characterClass: 0
   progression: {fileID: 11400000, guid: 69da9404dd8646846b4d70f5039c2191, type: 2}
+  levelUpPE: {fileID: 0}
+  shouldUseModifiers: 1

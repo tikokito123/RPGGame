@@ -10,6 +10,7 @@ namespace RPG.Combat
         [SerializeField] AnimatorOverrideController animatorOverride = null;
         [SerializeField] GameObject EquippedPrefab = null;
         [SerializeField] float damage = 5f;
+        [SerializeField] float percentageBonus = 0f;
         [SerializeField] float weaponRange = 2f;
         [SerializeField] bool isRightHanded = true;
         [SerializeField] Projectile projectile = null;
@@ -27,7 +28,11 @@ namespace RPG.Combat
         {
             return projectile != null;
         }
-
+        
+        public float GetPrecentageBonus()
+        {
+            return percentageBonus;
+        }
         public void LunchProjectile(Health target, Transform rightHand, Transform leftHand,GameObject instigator, float calculatedDamage)
         {
             Projectile projectileInstance = Instantiate(projectile,GetTransform(rightHand, leftHand).position, Quaternion.identity);
