@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPG.Control;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -26,9 +27,6 @@ namespace RPG.SceneManagment
             {
                 StartCoroutine(Transition());
             }
-        }
-        private void Start()
-        {
         }
         private IEnumerator Transition()
         {

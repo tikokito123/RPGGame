@@ -16,7 +16,6 @@ namespace RPG.Combat
 
             }
         }
-
         private void Pickup(Fighter fighter)
         {
             fighter.EquipWeapon(weapon);
@@ -46,6 +45,11 @@ namespace RPG.Combat
                 Pickup(callingController.GetComponent<Fighter>());
             }
             return true;
+        }
+
+        public CursorType GetCursorType()
+        {
+            return CursorType.Pickup;
         }
     }
 }

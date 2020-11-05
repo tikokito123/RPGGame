@@ -148,6 +148,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1489948039454546769}
     m_Modifications:
+    - target: {fileID: 362213247236597041, guid: f539a87dbb27a254892f518efc34144b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.795044
+      objectReference: {fileID: 0}
+    - target: {fileID: 1944055941111592802, guid: f539a87dbb27a254892f518efc34144b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 26.099976
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131346190041692508, guid: f539a87dbb27a254892f518efc34144b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 15.170044
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599199886538291107, guid: f539a87dbb27a254892f518efc34144b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 26.099976
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599199886538291107, guid: f539a87dbb27a254892f518efc34144b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -38.299988
+      objectReference: {fileID: 0}
     - target: {fileID: 6189080526032217003, guid: f539a87dbb27a254892f518efc34144b, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -297,6 +317,18 @@ PrefabInstance:
     - target: {fileID: 3699973804439690588, guid: 96be04c336752874a88a08b04d4ac062, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427376110328078969, guid: 96be04c336752874a88a08b04d4ac062, type: 3}
+      propertyPath: cursorMappings.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427376110328078969, guid: 96be04c336752874a88a08b04d4ac062, type: 3}
+      propertyPath: cursorMappings.Array.data[4].texture
+      value: 
+      objectReference: {fileID: 2800000, guid: d65d95ca16518034fa82669a92d0b6e7, type: 3}
+    - target: {fileID: 4427376110328078969, guid: 96be04c336752874a88a08b04d4ac062, type: 3}
+      propertyPath: cursorMappings.Array.data[4].type
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6895782183747261688, guid: 96be04c336752874a88a08b04d4ac062, type: 3}
       propertyPath: startingLevel
