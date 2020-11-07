@@ -193,6 +193,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4825120160421238640, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
   m_PrefabInstance: {fileID: 2431071423107014276}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2257855898869755298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4533266023109063462, guid: 476ff1b18c200ca4d8be5b15adfd94eb, type: 3}
+  m_PrefabInstance: {fileID: 2431071423107014276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9014551819063210293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88c84b767dffff94197a0fab07a793de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4104998929437345667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -315,5 +326,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Bar
       objectReference: {fileID: 0}
+    - target: {fileID: 8140646878458701583, guid: eadc5e2cac8474f47a12e00567377662, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 2257855898869755298}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eadc5e2cac8474f47a12e00567377662, type: 3}

@@ -1,6 +1,5 @@
 ﻿using GameDevTV.Utils;
 using System;
-using System.Xml.Schema;
 using UnityEngine;
 
 namespace RPG.Stats

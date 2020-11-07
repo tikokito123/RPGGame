@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.XR.WSA.Input;
-using RPG.Resources;
+using RPG.Attributes;
 
 namespace RPG.Combat
 {

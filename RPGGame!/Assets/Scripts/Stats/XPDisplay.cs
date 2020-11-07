@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using RPG.Resources;
+using RPG.Attributes;
 namespace RPG.Stats
 {
     public class XPDisplay : MonoBehaviour
