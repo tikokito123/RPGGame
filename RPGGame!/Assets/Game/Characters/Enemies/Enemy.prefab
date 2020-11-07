@@ -330,5 +330,18 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 2257855898869755298}
+    - target: {fileID: 8140646878458701583, guid: eadc5e2cac8474f47a12e00567377662, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 2022824265168151691}
+    - target: {fileID: 8140646878458701583, guid: eadc5e2cac8474f47a12e00567377662, type: 3}
+      propertyPath: rootCanvas
+      value: 
+      objectReference: {fileID: 2022824265168151691}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eadc5e2cac8474f47a12e00567377662, type: 3}
+--- !u!223 &2022824265168151691 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6361360121598095714, guid: eadc5e2cac8474f47a12e00567377662, type: 3}
+  m_PrefabInstance: {fileID: 4925412557538448873}
+  m_PrefabAsset: {fileID: 0}
