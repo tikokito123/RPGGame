@@ -3,15 +3,24 @@ using RPG.Saving;
 using RPG.Core;
 using RPG.Stats;
 using GameDevTV.Utils;
+using UnityEngine.Events;
+using RPG.UI.DamageText;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace RPG.Resources
 {
     public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] float regenerationPercentage = 70;
+        [SerializeField] TakeDamageEvent takeDamage;
+        [System.Serializable]
+        public class TakeDamageEvent : UnityEvent<float>
+        {
+        }
         LazyValue<float> health;
         bool isDead = false;
         
+
         private void Awake()
         {
             health = new LazyValue<float>(GetInitialHealth);
@@ -23,6 +32,7 @@ namespace RPG.Resources
         private void Start()
         {
             health.ForceInit();
+            
         }
 
         private void OnEnable()
@@ -39,12 +49,17 @@ namespace RPG.Resources
         }
         public void HealthDamage(GameObject instigator, float damage)
         {
-            print(gameObject.name + "took damage: " + damage);
             health.value = Mathf.Max(health.value - damage, 0);
-            Die();
-            AwardExperience(instigator);
+            if (health.value <= 0)
+            {
+                Die();
+                AwardExperience(instigator);
+            }
+            else
+            {
+                takeDamage.Invoke(damage);
+            }
         }
-
         public float GetHealth()
         {
             return health.value;
@@ -61,14 +76,10 @@ namespace RPG.Resources
         }
         private void Die()
         {
-            if (health.value == 0)
-            {
-                if (isDead) return;
-                    
-                isDead = true;
-                GetComponent<Animator>().SetTrigger("Die");
-                GetComponent<ActionShcelduler>().CancelCurrentAction();          
-            }
+            if (isDead) return;
+            isDead = true;
+            GetComponent<Animator>().SetTrigger("Die");
+            GetComponent<ActionShcelduler>().CancelCurrentAction();          
         }
         private void RegenerateHealth()
         {
@@ -91,7 +102,10 @@ namespace RPG.Resources
         public void RestoreState(object state)
         {
             health.value = (float)state;
-            Die();
+            if (health.value <= 0)
+            {
+                Die();
+            }
         }
     }
 }
