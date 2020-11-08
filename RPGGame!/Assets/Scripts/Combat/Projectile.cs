@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.XR.WSA.Input;
+﻿using UnityEngine;
 using RPG.Attributes;
+using UnityEngine.Events;
 
 namespace RPG.Combat
 {
@@ -16,6 +12,7 @@ namespace RPG.Combat
         [SerializeField] float maxLifeTime = 3f;
         [SerializeField] GameObject[] destroyOnHit = null;
         [SerializeField] float lifeAfterImpact = 2f;
+        [SerializeField] UnityEvent projectileSound;
         GameObject instigator = null;
         Health target = null;
         float damage = 0;
@@ -51,6 +48,7 @@ namespace RPG.Combat
             if (target.IsDead()) return;
             target.HealthDamage(instigator,damage);
             speed = 0;
+            projectileSound.Invoke();
             if (hitEffects != null)
             {
                 var impact = Instantiate(hitEffects, GetAimLoacation(), transform.rotation);

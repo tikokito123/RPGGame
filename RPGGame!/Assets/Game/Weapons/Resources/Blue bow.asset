@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Blue bow
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 22100000, guid: cf460499ecd140c419d5c0cc38a834cd, type: 2}
-  EquippedPrefab: {fileID: 3449909788663931384, guid: df5414dd5d4856741a7418084dc4e3ef, type: 3}
+  EquippedPrefab: {fileID: 2385951207869640617, guid: df5414dd5d4856741a7418084dc4e3ef, type: 3}
   damage: 7
+  percentageBonus: 0
   weaponRange: 15
   isRightHanded: 0
   projectile: {fileID: 2549723095668736915, guid: 7d480e1da861e904dbb8a951f51ae906, type: 3}

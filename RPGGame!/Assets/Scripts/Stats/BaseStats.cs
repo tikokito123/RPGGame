@@ -7,7 +7,7 @@ namespace RPG.Stats
     public class BaseStats : MonoBehaviour
     {
         [Range(0,99)]
-        [SerializeField] int startingLevel = 0;
+        [SerializeField] int startingLevel = 1;
         [SerializeField] CharacterClass characterClass;
         [SerializeField] Progression progression = null;
         [SerializeField] GameObject levelUpPE = null;
@@ -61,7 +61,7 @@ namespace RPG.Stats
 
         private float GetBaseStat(Stat stat)
         {
-            return progression.GetStat(stat, characterClass, startingLevel);
+            return progression.GetStat(stat, characterClass, currentLevel.value);
         }
 
         public int GetLevel()
@@ -80,7 +80,6 @@ namespace RPG.Stats
                 }
             }
             return total;
-
         }
         private float GetPrecentageModifier(Stat stat)
         {
@@ -104,7 +103,7 @@ namespace RPG.Stats
             for (int level = 1; level <= penultimateLevels; level++)
             {
                 float XPToLevelUp = progression.GetStat(Stat.ExperienceLevelUp, characterClass, level); 
-                if (XPToLevelUp >= currentXP)
+                if (XPToLevelUp > currentXP)
                 {
                     return level;
                 }

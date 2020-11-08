@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Red bow
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 22100000, guid: cf460499ecd140c419d5c0cc38a834cd, type: 2}
-  EquippedPrefab: {fileID: 3449909788663931384, guid: df5414dd5d4856741a7418084dc4e3ef, type: 3}
+  EquippedPrefab: {fileID: 2385951207869640617, guid: df5414dd5d4856741a7418084dc4e3ef, type: 3}
   damage: 7
   percentageBonus: 20
   weaponRange: 15
