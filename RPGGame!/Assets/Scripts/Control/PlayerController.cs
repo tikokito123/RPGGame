@@ -21,6 +21,7 @@ namespace RPG.Control
         
         [SerializeField] float maxDistance = 1f;
         [SerializeField] CursorMapping[] cursorMappings = null;
+        [SerializeField] float raycastRadius = 1f;
         private void Awake()
         {
             health = GetComponent<Health>();
@@ -57,7 +58,7 @@ namespace RPG.Control
         }
         RaycastHit[] RayCastAllSorted()
         {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            RaycastHit[] hits = Physics.SphereCastAll(GetMouseRay(), raycastRadius);
             float[] distances = new float[hits.Length];
             for (int i = 0; i < hits.Length; i++)
             {

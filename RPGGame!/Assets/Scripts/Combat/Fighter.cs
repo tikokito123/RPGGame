@@ -39,7 +39,7 @@ namespace RPG.Combat
             timeSinceLastAttack += Time.deltaTime;
             if (target == null) return;
             if (target.IsDead()) return;
-            if (!GetIsInDistance())
+            if (!GetIsInDistance(target.transform))
             {
                 GetComponent<Mover>().MoveTo(target.transform.position, 1f);
             }
@@ -72,7 +72,8 @@ namespace RPG.Combat
         public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) { return false; }
-            if (!GetComponent<Mover>().CanMoveTo(combatTarget.transform.position)) return false;
+            if (!GetComponent<Mover>().CanMoveTo(combatTarget.transform.position) && 
+                !GetIsInDistance(combatTarget.transform)) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
@@ -100,9 +101,9 @@ namespace RPG.Combat
         {
             Hit();
         }
-        private bool GetIsInDistance()
+        private bool GetIsInDistance(Transform targetTransform)
         {
-            return Vector3.Distance(transform.position, target.transform.position) < currentWeaponConfig.GetWeaponRange();
+            return Vector3.Distance(transform.position, targetTransform.position) < currentWeaponConfig.GetWeaponRange();
         }
         public void Attack(GameObject CombatTarget)
         {

@@ -4,6 +4,7 @@ using RPG.Core;
 using RPG.Movement;
 using RPG.Attributes;
 using GameDevTV.Utils;
+using System;
 
 namespace RPG.Control
 {
@@ -11,11 +12,13 @@ namespace RPG.Control
     {
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 3f;
+        [SerializeField] float aggroCoolDown = 5f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
         [SerializeField] float suspicionWaypoint = 1f;
         [Range(0,1)]
         [SerializeField] float PatrolSpeedFraction = 0.2f;
+        [SerializeField] float shoutDistance = 20f;
        
         Fighter fighter;
         Health health;
@@ -23,8 +26,11 @@ namespace RPG.Control
         Mover mover;
         LazyValue<Vector3> guardLocation;
         float timeSinceLastSawPlayer = Mathf.Infinity;
+        float timeSinceAggrevate = Mathf.Infinity;
         float timeAtWaypoint = Mathf.Infinity;
         int currentWaypointIndex = 0;
+       
+        
         private void Awake()
         {
             fighter = GetComponent<Fighter>();
@@ -46,9 +52,9 @@ namespace RPG.Control
         private void Update()
         {
             if (health.IsDead()) return;
-            if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
+            if (IsAggrevated() && fighter.CanAttack(player))
             {
-                timeSinceLastSawPlayer = 0;
+                
                 AttackBehaviour();
             }
             else if (timeSinceLastSawPlayer < suspicionTime)
@@ -62,11 +68,17 @@ namespace RPG.Control
             }
             UpdateTimers();
         }
+        
+        public void Aggrevate()
+        {
+            timeSinceAggrevate = 0;
+        }
 
         private void UpdateTimers()
         {
             timeSinceLastSawPlayer += Time.deltaTime;
             timeAtWaypoint += Time.deltaTime;
+            timeSinceAggrevate += Time.deltaTime;
         }
 
         private void PatrolBehaviour()
@@ -108,19 +120,34 @@ namespace RPG.Control
 
         private void AttackBehaviour()
         {
+            timeSinceLastSawPlayer = 0;
             fighter.Attack(player);
+            AggrevateNearbyEnemies();
         }
 
-        private bool InAttackRangeOfPlayer()
+        private void AggrevateNearbyEnemies()
+        {
+            var hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);
+            foreach (var hit in hits)
+            {
+                var AI = hit.collider.GetComponent<AIController>();
+                if (AI == null) continue;
+                AI.Aggrevate();
+            }
+        }
+
+        private bool IsAggrevated()
         {
             float dist = Vector3.Distance(gameObject.transform.position, player.transform.position);
-            return dist <= chaseDistance;
+            return dist <= chaseDistance || timeSinceAggrevate < aggroCoolDown;
         }
         //called by unity!
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, chaseDistance);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, shoutDistance);
         }
     }     
 
