@@ -9,6 +9,7 @@ using GameDevTV.Utils;
 using System.Dynamic;
 using UnityEngine.Events;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine.Rendering;
 
 namespace RPG.Combat
 {
@@ -71,6 +72,7 @@ namespace RPG.Combat
         public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) { return false; }
+            if (!GetComponent<Mover>().CanMoveTo(combatTarget.transform.position)) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
